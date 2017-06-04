@@ -1,7 +1,6 @@
 #include "stat.hpp"
 
 
-using namespace std;
 
 unsigned stat::getStat ()
 {
@@ -16,12 +15,12 @@ unsigned stat::getStat ()
 
 }
 
-void stat::buffStat ( pair< string, unsigned > new_buff )
+void stat::buffStat ( std::pair< std::string, unsigned > new_buff )
 {
 	modifiers.insert( new_buff );
 }
 
-void stat::debuffStat ( pair< string, unsigned > buff_2_remove )
+void stat::debuffStat ( std::pair< std::string, unsigned > buff_2_remove )
 {
 	auto it = modifiers.find( buff_2_remove.first );
 

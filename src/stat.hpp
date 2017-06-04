@@ -4,7 +4,6 @@
 #include <unordered_map>
 #include <string>
 
-using namespace std;
 class stat
 {
 	public:
@@ -16,13 +15,13 @@ class stat
 	~stat () {};
 
 	unsigned getStat ();
-	void buffStat ( pair< std::string, unsigned > new_buff );
-	void debuffStat ( pair< std::string, unsigned > buff_2_remove );
+	void buffStat ( std::pair< std::string, unsigned > new_buff );
+	void debuffStat ( std::pair< std::string, unsigned > buff_2_remove );
 
 	private:
 
 	const unsigned base_value;
-	unordered_map <string, unsigned> modifiers;
+	std::unordered_map <std::string, unsigned> modifiers;
 
 };
 

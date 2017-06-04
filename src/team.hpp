@@ -1,24 +1,34 @@
 #ifndef _TEAM_HPP_
 #define _TEAM_HPP_
 
-#include <string>
+#include "unit.hpp"
 
-using namespace std;
+#include <string>
+#include <vector>
+
 
 class team
-{
-	private:
-
-	const unsigned t_color;
-	const string t_name;
-
+{	
 	public:
 
-	team(const unsigned color, const string name)
-		: t_color (color) , t_name (name)
+	enum class color { blue, red, green, yellow, cyan, orange, purple, black, gray };
+	
+	team(const color _color, const std::string name)
+		: t_color (_color) , t_name (name)
 	{};
+	
+	~team();
 
-	string getTeamName();
+	std::string getTeamName();
+	void printInfo();
+	void addUnit(unit* new_unit);
+	void removeUnit(unit* unit2remove);
+	
+	private:
+	std::vector<unit*> t_units;
+	const color t_color;
+	const std::string t_name;
+	
 };
 
 #endif //_TEAM_HPP_
