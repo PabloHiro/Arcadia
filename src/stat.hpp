@@ -4,27 +4,26 @@
 #include <unordered_map>
 #include <string>
 
-class stat 
+using namespace std;
+class stat
 {
-	
-public:
-	
+	public:
+
 	stat (const unsigned b_v)
 		: base_value (b_v)
-	{
-	}
-	
-	~stat () { }
-	
+	{};
+
+	~stat () {};
+
 	unsigned getStat ();
-	void buff ( std::pair< std::string, unsigned > new_buff );
-	void debuff ( std::pair< std::string, unsigned > buff_2_remove );
-	
-private:
+	void buffStat ( pair< std::string, unsigned > new_buff );
+	void debuffStat ( pair< std::string, unsigned > buff_2_remove );
+
+	private:
 
 	const unsigned base_value;
-	std::unordered_map <std::string, unsigned> modifiers;
-	
+	unordered_map <string, unsigned> modifiers;
+
 };
 
 #endif // _STAT_HPP_
