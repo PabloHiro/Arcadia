@@ -16,7 +16,7 @@ class bear : public unit
 		/*
 		u_name("Bear"),
 		u_position(position)
-		u_hp(80u),
+		u_max_hp(80u),
 		u_attack(8u),
 		u_defense(0u),
 		u_level(1u),

@@ -2,8 +2,21 @@
 
 #include <iostream>
 
-using namespace std;
+void unit::touchHp(int Hp)
+{
+	u_cur_hp += Hp;
+	if( u_cur_hp > u_max_hp.getStat() ) u_cur_hp = u_max_hp.getStat();
+	if( u_cur_hp <= 0 )
+	{
+		u_cur_hp = 0;
+		std::cout << "Unit: " << u_name << " is dead" << std::endl;
+	}
+}
 
+int unit::getHp()
+{
+	return u_cur_hp;
+}
 
 void unit::printInfo()
 {
@@ -13,7 +26,7 @@ void unit::printInfo()
 
 void unit::printStats()
 {
-	std::cout << "HP: " << u_hp.getStat() << std::endl;
+	std::cout << "MAX HP: " << u_max_hp.getStat() << std::endl;
 	std::cout << "ATTACK: " << u_attack.getStat() << std::endl;
 	std::cout << "DEFENSE: " << u_defense.getStat() << std::endl;
 	std::cout << "LEVEL: " << u_level.getStat() << std::endl;
