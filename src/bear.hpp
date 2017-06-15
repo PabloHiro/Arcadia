@@ -8,9 +8,10 @@
 class bear : public unit
 {
 	public:
-	bear(std::array<int,2> position) : unit
-		("Bear", 
+	bear(const std::array<int,2> position, const team the_team) : unit
+		("Bear",
 		position,
+		the_team,
 		80u, 8u, 0u, 1u, 1u,
 		3u, 15u)
 		/*
@@ -26,7 +27,7 @@ class bear : public unit
 		u_vision(15u)
 		*/
 	{};
-	
+
 	~bear()
 	{};
 

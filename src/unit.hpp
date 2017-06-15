@@ -4,10 +4,10 @@
 #include <string>
 #include <array>
 
+#include "defines.h"
 #include "stat.hpp"
+#include "team.hpp"
 
-#define X 0
-#define Y 1
 
 
 class unit
@@ -24,13 +24,15 @@ class unit
 
 	protected:
 
-	unit(const std::string name, std::array<int, 2> position, const unsigned max_hp, const unsigned attack,
+	unit(const std::string name, const std::array<int, 2> position, const team the_team, const unsigned max_hp, const unsigned attack,
 		const unsigned defense, const unsigned level, const unsigned a_speed,
 		const unsigned mov_speed, const unsigned vision) :
 		u_name(name),
 
 		u_position(position),
 
+		u_team(the_team),
+		
 		u_max_hp(max_hp),
 		u_attack(attack),
 		u_defense(defense),
@@ -38,7 +40,7 @@ class unit
 		u_attack_speed(a_speed),
 
 		u_mov_speed(mov_speed),
-		u_vision(vision)
+		u_vision(vision)		
 	{
 		u_cur_hp = u_max_hp.getStat();
 	};
@@ -46,6 +48,8 @@ class unit
 	const std::string u_name;
 
 	std::array<int, 2> u_position;
+	
+	team u_team;
 
 	int u_cur_hp;
 
@@ -57,8 +61,7 @@ class unit
 
 	stat u_mov_speed;
 	stat u_vision;
-
-
+	
 
 };
 

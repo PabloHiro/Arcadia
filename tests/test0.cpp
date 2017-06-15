@@ -6,13 +6,15 @@
 int main()
 {
 	bear *mybear;
-	mybear = new bear({2,2});
-	team neutral(team::color::gray,"Neutral");
+	team neutral_team(team::color::gray, "Neutral");
+	mybear = new bear({2,2}, neutral_team);
 	mybear->printInfo();
 	mybear->printStats();
-	neutral.printInfo();
-	std::cout << "Adding unit" << std::endl;
-	neutral.addUnit(mybear);
-	neutral.printInfo();
+	std::cout << "Now we are making a teamed bear: " << std::endl;
+	delete mybear;
+	team my_team(team::color::blue, "MyTeam");
+	mybear = new bear({3,3}, my_team);
+	mybear->printInfo();
+	mybear->printStats();
 	return 0;
 }

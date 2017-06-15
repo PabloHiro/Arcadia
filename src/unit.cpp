@@ -5,7 +5,7 @@
 void unit::touchHp(int Hp)
 {
 	u_cur_hp += Hp;
-	if( u_cur_hp > u_max_hp.getStat() ) u_cur_hp = u_max_hp.getStat();
+	if( u_cur_hp > (int)u_max_hp.getStat() ) u_cur_hp = u_max_hp.getStat();
 	if( u_cur_hp <= 0 )
 	{
 		u_cur_hp = 0;
@@ -22,10 +22,12 @@ void unit::printInfo()
 {
 	std::cout << "Unit: " <<  u_name << std::endl;
 	std::cout << "Position: ( " << u_position[X] << "," << u_position[Y] << " )" << std::endl;
+	u_team.printInfo();
 }
 
 void unit::printStats()
 {
+	std::cout << "CURRENT HP: " << this->getHp() << std::endl;
 	std::cout << "MAX HP: " << u_max_hp.getStat() << std::endl;
 	std::cout << "ATTACK: " << u_attack.getStat() << std::endl;
 	std::cout << "DEFENSE: " << u_defense.getStat() << std::endl;

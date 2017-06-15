@@ -4,18 +4,25 @@
 #include <iostream>
 #include <type_traits>
 
-team::~team()
-{
-	for(auto it = t_units.begin(); it != t_units.end(); it++)
-	{
-		delete *it;
-	}
-}
 
 std::ostream& operator << (std::ostream& os, const team::color& _color)
 {
-   os << static_cast<std::underlying_type<team::color>::type>(_color);
-   return os;
+	std::string color_name;
+	switch(_color)
+	{
+	   case team::color::blue: color_name = "blue"; break;
+	   case team::color::red: color_name = "red"; break;
+	   case team::color::green: color_name = "green"; break;
+	   case team::color::yellow: color_name = "yellow"; break;
+	   case team::color::cyan: color_name = "cyan"; break;
+	   case team::color::orange: color_name = "orange"; break;
+	   case team::color::purple: color_name = "purple"; break;
+	   case team::color::black: color_name = "black"; break;
+	   case team::color::gray: color_name = "gray"; break;
+	   default: break;
+	}
+	os << color_name;
+	return os;
 }
 
 std::string team::getTeamName()
@@ -25,24 +32,7 @@ std::string team::getTeamName()
 
 void team::printInfo()
 {
-	std::cout << "Name: " << t_name << std::endl;
-	std::cout << "Color: " << t_name << std::endl;
-	std::cout << "Units: " << t_units.size() << std::endl;
+	std::cout << "Team name: " << t_name << std::endl;
+	std::cout << "Color: " << t_color << std::endl;
 }
 
-void team::addUnit(unit* new_unit)
-{
-	t_units.push_back(new_unit);
-}
-
-void team::removeUnit(unit* unit2remove)
-{
-	for(auto it = t_units.begin(); it != t_units.end(); it++)
-	{
-		if(*it == unit2remove){
-			t_units.erase(it);
-			delete unit2remove;
-			break;
-		}
-	}
-}
