@@ -1,31 +1,28 @@
 #include "stat.hpp"
 
-
-
-unsigned stat::getStat ()
+void stat::buff ( buff* new_buff )
 {
-	unsigned current_value = base_value;
-
-	for ( auto it = modifiers.begin(); it != modifiers.end(); ++it )
-	{
-		current_value += it->second;
-	}
-
-	return current_value;
-
+    for ( auto& existing_buff : modifiers )
+    {
+        if( existing_buff->name == new_buff->name )
+        {
+            modifiers.erase(existing_buff);
+            delete existing_buff;
+            break;
+        }
+    }
+    modifiers.insert( new_buff );
 }
 
-void stat::buffStat ( std::pair< std::string, unsigned > new_buff )
+void stat::debuff ( buff* old_buff )
 {
-	modifiers.insert( new_buff );
-}
-
-void stat::debuffStat ( std::pair< std::string, unsigned > buff_2_remove )
-{
-	auto it = modifiers.find( buff_2_remove.first );
-
-	if ( it != modifiers.end() )
-	{
-		modifiers.erase(buff_2_remove.first);
-	}
+    for ( auto& existing_buff : modifiers )
+    {
+        if( existing_buff->name == old_buff->name )
+        {
+            modifiers.erase(existing_buff);
+            delete existing_buff;
+            return;
+        }
+    }
 }

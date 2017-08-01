@@ -1,27 +1,33 @@
 #ifndef _STAT_HPP_
 #define _STAT_HPP_
 
-#include <unordered_map>
+#include <list>
 #include <string>
+#include "buff.hpp"
 
 class stat
 {
-	public:
+public:
 
-	stat (const unsigned b_v)
-		: base_value (b_v)
-	{};
+    stat 
+    (
+        const unsigned b_v
+    ): 
+        base_value  (b_v),
+        value       (b_v)
+    {};
 
-	~stat () {};
+    ~stat () {};
 
-	unsigned getStat ();
-	void buffStat ( std::pair< std::string, unsigned > new_buff );
-	void debuffStat ( std::pair< std::string, unsigned > buff_2_remove );
+    unsigned value () { return value; }
+    void buff ( buff* new_buff );
+    void debuff ( buff* old_buff );
 
-	private:
+private:
 
-	const unsigned base_value;
-	std::unordered_map <std::string, unsigned> modifiers;
+    const unsigned base_value;
+    unsigned value;
+    std::list <buff*> modifiers;
 
 };
 

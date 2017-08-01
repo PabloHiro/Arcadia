@@ -12,56 +12,58 @@
 
 class unit
 {
-	public:
+public:
 
-	virtual ~unit() {};
+    virtual ~unit() {};
 
-	void touchHp(int Hp);
-	int getHp();
+    void touch_hp( const int hp_change );
+    int hp();
 
-	void printInfo();
-	void printStats();
+    void print_info();
+    void print_stats();
 
-	protected:
+protected:
 
-	unit(const std::string name, const std::array<int, 2> position, const team the_team, const unsigned max_hp, const unsigned attack,
-		const unsigned defense, const unsigned level, const unsigned a_speed,
-		const unsigned mov_speed, const unsigned vision) :
-		u_name(name),
+    unit
+    (
+        const           std::string name, 
+        const           std::array<int, 2> position, 
+        const           team the_team, 
+        const unsigned  max_hp, 
+        const unsigned  attack,
+        const unsigned  defense, 
+        const unsigned  level, 
+        const unsigned  a_speed,
+        const unsigned  mov_speed, 
+        const unsigned  vision
+    ) :
+        u_name          (name),
+        u_position      (position),
+        u_team          (the_team),
+        u_max_hp        (max_hp),
+        u_attack        (attack),
+        u_defense       (defense),
+        u_level         (level),
+        u_attack_speed  (a_speed),
+        u_mov_speed     (mov_speed),
+        u_vision        (vision)
+    {
+        u_cur_hp = u_max_hp.getStat();
+    };
 
-		u_position(position),
+    const std::string u_name;
+    std::array<int, 2>  u_position;
+    team u_team;
 
-		u_team(the_team),
-		
-		u_max_hp(max_hp),
-		u_attack(attack),
-		u_defense(defense),
-		u_level(level),
-		u_attack_speed(a_speed),
+    stat u_max_hp;
+    stat u_attack;
+    stat u_defense;
+    stat u_level;
+    stat u_attack_speed;
+    stat u_mov_speed;
+    stat u_vision;
 
-		u_mov_speed(mov_speed),
-		u_vision(vision)		
-	{
-		u_cur_hp = u_max_hp.getStat();
-	};
-
-	const std::string u_name;
-
-	std::array<int, 2> u_position;
-	
-	team u_team;
-
-	int u_cur_hp;
-
-	stat u_max_hp;
-	stat u_attack;
-	stat u_defense;
-	stat u_level;
-	stat u_attack_speed;
-
-	stat u_mov_speed;
-	stat u_vision;
-	
+    int u_cur_hp;
 
 };
 

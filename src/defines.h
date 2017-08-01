@@ -2,8 +2,11 @@
 #define _DEFINES_H_
 
 
-#define X 0
-#define Y 1
+enum
+{
+    X=0,
+    Y=1,
+}
 
 
 #endif // _DEFINES_H_

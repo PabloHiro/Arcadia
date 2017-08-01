@@ -7,29 +7,30 @@
 
 class bear : public unit
 {
-	public:
-	bear(const std::array<int,2> position, const team the_team) : unit
-		("Bear",
-		position,
-		the_team,
-		80u, 8u, 0u, 1u, 1u,
-		3u, 15u)
-		/*
-		u_name("Bear"),
-		u_position(position)
-		u_max_hp(80u),
-		u_attack(8u),
-		u_defense(0u),
-		u_level(1u),
-		u_attack_speed(1u),
+    
+public:
+    bear
+    (
+        const std::array<int,2> position, 
+        const team the_team
+    ) : 
+    unit
+    (
+        "Bear",     // name
+        position,   // position
+        the_team,   // team
+        80u,        // max_hp
+        8u,         // attack
+        0u,         // defense
+        1u,         // level
+        1u,         // attack_speed
+        3u,         // mov_speed
+        15u         // vision
+    )
+    {};
 
-		u_mov_speed(3u),
-		u_vision(15u)
-		*/
-	{};
-
-	~bear()
-	{};
+    ~bear()
+    {};
 
 };
 
