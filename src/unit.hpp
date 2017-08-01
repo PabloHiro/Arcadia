@@ -48,7 +48,7 @@ protected:
         u_mov_speed     (mov_speed),
         u_vision        (vision)
     {
-        u_cur_hp = u_max_hp.getStat();
+        u_cur_hp = u_max_hp.value();
     };
 
     const std::string u_name;

@@ -14,19 +14,19 @@ public:
         const unsigned b_v
     ): 
         base_value  (b_v),
-        value       (b_v)
+        curr_value       (b_v)
     {};
 
     ~stat () {};
 
-    unsigned value () { return value; }
-    void buff ( buff* new_buff );
-    void debuff ( buff* old_buff );
+    unsigned value () { return curr_value; }
+    void buff_stat ( buff* new_buff );
+    void debuff_stat ( buff* old_buff );
 
 private:
 
     const unsigned base_value;
-    unsigned value;
+    unsigned curr_value;
     std::list <buff*> modifiers;
 
 };

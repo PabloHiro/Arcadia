@@ -6,7 +6,7 @@ enum
 {
     X=0,
     Y=1,
-}
+};
 
 
 #endif // _DEFINES_H_

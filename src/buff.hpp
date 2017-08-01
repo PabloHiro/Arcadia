@@ -5,18 +5,19 @@
 
 class buff
 {
-    public:
+    
+public:
     
     buff
     (
         const unsigned modifier,
         const float factor,
         const float duration,
-        const string name
+        const std::string name
     ) :
-        b_modifier  (modifier)
-        b_factor    (factor)
-        b_duration  (duration)
+        b_modifier  (modifier),
+        b_factor    (factor),
+        b_duration  (duration),
         b_name      (name)
     {};
     
@@ -28,11 +29,13 @@ class buff
     std::string name()  { return b_name;        }
     
     
-    private:
+private:
+
     const unsigned b_modifier;
     const float b_factor;
     const float b_duration;
     const std::string b_name;
+    
 };
 
 

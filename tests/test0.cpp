@@ -14,7 +14,7 @@ int main()
     delete mybear;
     team my_team(team::color::blue, "MyTeam");
     mybear = new bear({3,3}, my_team);
-    mybear->print_stats();
+    mybear->print_info();
     mybear->print_stats();
     delete mybear;
     return 0;
