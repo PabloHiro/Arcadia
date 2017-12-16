@@ -1,9 +1,12 @@
-
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 
 #----------------------------------------
 #        project name
 
-project(Arcadia)
+project(arcadia CXX)
 
-add_subdirectory(tests)
+enable_language(C CXX)
+
+#add_subdirectory(client)
+#add_subdirectory(server)
+add_subdirectory(test)
