@@ -1,5 +1,14 @@
 #include "menu_main.hpp"
 
+
+SDL_Surface* menu_main::load()
+{
+    SDL_Surface* screen_surface;
+    //screen_surface = load_surface( "resources/main_menu.bmp" );
+    screen_surface = load_surface( "resources/main_menu.png" );
+    
+    return screen_surface;
+}
 void menu_main::event_handler(SDL_Event event)
 {
     while( SDL_PollEvent( &event ) )

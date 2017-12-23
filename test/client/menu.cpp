@@ -5,16 +5,17 @@
 
 int main(int argc, char **argv)
 {
-    std::cout << "Testing output" << std::endl;
     //Start up SDL and create a window
-    if( !init() )
+    if( !client_loader::initialize() )
     {
         fprintf( stderr, "Failed to initialize!\n" );
     }
     else
     {
         //Load media
-        if( !loadMedia() )
+        client_loader::buffer = menu_main::load();
+        
+        if( !client_loader::buffer )
         {
             fprintf( stderr, "Failed to load media!\n" );
         }
@@ -29,17 +30,16 @@ int main(int argc, char **argv)
                 //Handle events on queue
                 menu_main::event_handler(event);
                 
-                //Apply the image
-                SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+                client_loader::display();
                 
                 //Update the surface
-                SDL_UpdateWindowSurface( gWindow );
+                SDL_UpdateWindowSurface( client_loader::window );
             }
         }
     }
     
     //Free resources and close SDL
-    close();
+    client_loader::close();
     
     return 0;
 }

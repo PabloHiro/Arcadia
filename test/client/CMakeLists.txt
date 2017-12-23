@@ -10,10 +10,13 @@ set(DEBUG_FLAG -Wall -Wextra)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 
 set(CLIENT_DIRECTORY ${CMAKE_SOURCE_DIR}/client)
 set(CLIENT_DIRECTORY_SRC
     ${CLIENT_DIRECTORY}/client_handler.cpp
+    ${CLIENT_DIRECTORY}/client_loader.cpp
 )
 
 set(CLIENT_MENU_DIRECTORY ${CMAKE_SOURCE_DIR}/client/menu)
@@ -46,8 +49,8 @@ endif()
 #target_compile_options(opengl_version PRIVATE ${DEBUG_FLAG} ${OPENGL_FLAG})
 
 add_executable(menu menu.cpp ${CLIENT_DIRECTORY_SRC} ${CLIENT_MENU_DIRECTORY_SRC})
-target_include_directories(menu PRIVATE ${CLIENT_DIRECTORY} ${SDL2_INCLUDE_DIRS} )
-target_link_libraries(menu ${SDL2_LIBRARIES} )
+target_include_directories(menu PRIVATE ${CLIENT_DIRECTORY} ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
+target_link_libraries(menu ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 target_compile_options(menu PRIVATE ${CXX_FLAG} ${DEBUG_FLAG})
 add_custom_command(
         TARGET menu POST_BUILD

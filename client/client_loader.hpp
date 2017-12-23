@@ -5,90 +5,25 @@
 
 #include "client_includes.hpp"
 
+SDL_Surface* load_surface( const char* path );
 
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
-//The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
-//The image we will load and show on the screen
-SDL_Surface* gHelloWorld = NULL;
-
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
-
-
-SDL_Surface* loadSurface( const char* path )
+class client_loader
 {
-    //Load image at specified path
-    SDL_Surface* loadedSurface = SDL_LoadBMP( path );
-    if( loadedSurface == NULL )
-    {
-        printf( "Unable to load image %s! SDL Error: %s\n", path, SDL_GetError() );
-    }
+    public:
     
-    return loadedSurface;
-}
-
-//Starts up SDL and creates window 
-bool init()
-{
-    //Initialization flag
-    bool success = true;
+    ~client_loader();
+        
+    static SDL_Window* window;
     
-    //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-    {
-        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-        success = false;
-    }
-    else
-    {
-        //Create window
-        gWindow = SDL_CreateWindow( "SDL_Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        if( gWindow == NULL )
-        {
-            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-            success = false;
-        }
-        else
-        {
-            //Get window surface
-            gScreenSurface = SDL_GetWindowSurface( gWindow );
-        }
-    }
+    static SDL_Surface* screen;
     
-    return success;
-}
-
-//Loads media 
-bool loadMedia()
-{
-    //Loading succes flag
-    bool success = true;
-    //Load splash image
-    gHelloWorld = loadSurface( "resources/tzar_menu.bmp" );
-    if( gHelloWorld == NULL )
-    {
-        printf( "Failed to load image: resources/tzar_menu.bmp\n" );
-        success = false;
-    }
-    return success;
-}
-
-//Frees media and shuts down SDL 
-void close()
-{
-    //Deallocate surface
-    SDL_FreeSurface( gHelloWorld );
-    gHelloWorld = NULL;
+    static SDL_Surface* buffer;
     
-    //Destroy window
-    SDL_DestroyWindow( gWindow );
-    gWindow = NULL;
+    static bool initialize();
     
-    //Quit SDL subsystems
-    SDL_Quit();
-}
-
+    static void display();
+    
+    static void close();
+};
 
 #endif //ARCADIA_CLIENT_CLIENT_LOADER_HPP

@@ -3,18 +3,19 @@
 
 #include "../client_includes.hpp"
 #include "../client_handler.hpp"
+#include "../client_loader.hpp"
 
 class menu_main
 {
     public:
     
-    void display();
+    static SDL_Surface* load();
     
-    void move_to_single_player();
+    void to_single_player();
     
-    void move_to_multi_player();
+    void to_multi_player();
     
-    void move_to_configuration();
+    void to_configuration();
 
     static void event_handler(SDL_Event event);
 };
