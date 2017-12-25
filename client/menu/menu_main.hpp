@@ -9,7 +9,7 @@ class menu_main
 {
     public:
     
-    static SDL_Surface* load();
+    static void load();
     
     void to_single_player();
     

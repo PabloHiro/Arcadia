@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <iostream>
 
 #include "client.hpp"
 
@@ -13,9 +12,9 @@ int main(int argc, char **argv)
     else
     {
         //Load media
-        client_loader::buffer = menu_main::load();
+        menu_main::load();
         
-        if( !client_loader::buffer )
+        if( !client_loader::buffer && !client_loader::texture )
         {
             fprintf( stderr, "Failed to load media!\n" );
         }
@@ -31,9 +30,6 @@ int main(int argc, char **argv)
                 menu_main::event_handler(event);
                 
                 client_loader::display();
-                
-                //Update the surface
-                SDL_UpdateWindowSurface( client_loader::window );
             }
         }
     }

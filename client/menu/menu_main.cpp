@@ -1,13 +1,11 @@
 #include "menu_main.hpp"
 
 
-SDL_Surface* menu_main::load()
+void menu_main::load()
 {
-    SDL_Surface* screen_surface;
-    //screen_surface = load_surface( "resources/main_menu.bmp" );
-    screen_surface = load_surface( "resources/main_menu.png" );
-    
-    return screen_surface;
+    //client_loader::buffer = load_surface( "resources/main_menu.bmp" );
+    //client_loader::buffer = load_surface( "resources/main_menu.png" );
+    client_loader::texture = load_texture( "resources/main_menu.png" );
 }
 void menu_main::event_handler(SDL_Event event)
 {

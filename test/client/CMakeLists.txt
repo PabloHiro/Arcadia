@@ -5,13 +5,12 @@ project(arcadia_client_test)
 #find_package(OpenGL REQUIRED)
 #find_package(GLUT REQUIRED)
 
-set(CXX_FLAG -static-libgcc -static-libstdc++)
-set(DEBUG_FLAG -Wall -Wextra)
+add_compile_options(-Wall -Wextra)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
-find_package(SDL2_ttf REQUIRED)
+#find_package(SDL2_ttf REQUIRED)
 
 set(CLIENT_DIRECTORY ${CMAKE_SOURCE_DIR}/client)
 set(CLIENT_DIRECTORY_SRC
@@ -29,7 +28,8 @@ set(CLIENT_MENU_DIRECTORY_SRC
 message(${CMAKE_SYSTEM_NAME})
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     message("System Windows detected")
-    set(SYSTEM_FLAGS "") #-Wl,-subsystem,-mwindows to supress the output
+    #-Wl,-subsystem,-mwindows to supress the output
+    add_compile_options(-std=c++11 -fno-exceptions -static-libgcc -static-libstdc++)
 #__________________________________________________________________________#
 elseif(CMAKE_SYSTEM_NAME MATCHES "APPLE")
     message("System Apple detected")
@@ -38,7 +38,7 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "APPLE")
 #__________________________________________________________________________#
 elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
     message("System Linux detected")
-    set(SYSTEM_FLAGS "")
+    add_compile_options(-std=c++11 -static-libgcc -static-libstdc++)
 #__________________________________________________________________________#
 endif()
 
@@ -51,14 +51,21 @@ endif()
 add_executable(menu menu.cpp ${CLIENT_DIRECTORY_SRC} ${CLIENT_MENU_DIRECTORY_SRC})
 target_include_directories(menu PRIVATE ${CLIENT_DIRECTORY} ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 target_link_libraries(menu ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
-target_compile_options(menu PRIVATE ${CXX_FLAG} ${DEBUG_FLAG})
+#target_compile_options(menu PRIVATE ${DEBUG_FLAG})
 add_custom_command(
         TARGET menu POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
                 ${CMAKE_SOURCE_DIR}/resources
                 ${CMAKE_CURRENT_BINARY_DIR}/resources
 )
-
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    add_custom_command(
+            TARGET menu POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${CMAKE_SOURCE_DIR}/lib/runtime
+                    ${CMAKE_CURRENT_BINARY_DIR}
+    )
+endif()
 #Call tests with make test
 
 #set(TESING_REGEX "doesn't work properly: ")
